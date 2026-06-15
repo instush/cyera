@@ -23,3 +23,5 @@ A running log of the prompts used to build this project, in order.
 10. Collect all the chat prompts and organize them in a prompts.md file with numbers. For any new prompt, add it (including this prompt).
 
 11. Add a collapsible Activity log list. Place the "Activity log" toggle on the right of the topmost main title of the data store, aligned right. When clicked, expand a log list above the data store, pushing it down.
+
+12. Remove the Findings item from the left bar.
