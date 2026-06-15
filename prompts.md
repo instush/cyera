@@ -25,3 +25,5 @@ A running log of the prompts used to build this project, in order.
 11. Add a collapsible Activity log list. Place the "Activity log" toggle on the right of the topmost main title of the data store, aligned right. When clicked, expand a log list above the data store, pushing it down.
 
 12. Remove the Findings item from the left bar.
+
+13. Update the data store URL parameters based on the user's filters and search.

@@ -23,17 +23,24 @@ const NAV_ITEMS = [
 
 // Derive the current "route" from the URL path (+ query for filters).
 //   /                    -> overview
-//   /datastores          -> data stores list   (?status= filters)
+//   /datastores          -> data stores list   (?search=&type=&status= filters)
 //   /datastores/:id      -> data store detail
 function readLocation() {
   const segments = window.location.pathname.split("/").filter(Boolean);
-  const status = new URLSearchParams(window.location.search).get("status");
+  const sp = new URLSearchParams(window.location.search);
+  const base = { id: null, search: "", type: "", status: "" };
 
   if (segments[0] === "datastores") {
-    if (segments[1]) return { view: "data-store", id: segments[1], status: null };
-    return { view: "data-stores", id: null, status };
+    if (segments[1]) return { ...base, view: "data-store", id: segments[1] };
+    return {
+      ...base,
+      view: "data-stores",
+      search: sp.get("search") || "",
+      type: sp.get("type") || "",
+      status: sp.get("status") || "",
+    };
   }
-  return { view: "overview", id: null, status: null };
+  return { ...base, view: "overview" };
 }
 
 function App() {
@@ -53,6 +60,19 @@ function App() {
     window.history.pushState({}, "", path + search);
     setLoc(readLocation());
   }
+
+  // Merge filter/search changes into the current URL query (replaceState, so
+  // typing and toggling filters don't flood the back/forward history).
+  const updateQuery = useCallback((partial) => {
+    const params = new URLSearchParams(window.location.search);
+    for (const [key, value] of Object.entries(partial)) {
+      if (value) params.set(key, value);
+      else params.delete(key);
+    }
+    const qs = params.toString();
+    window.history.replaceState({}, "", "/datastores" + (qs ? `?${qs}` : ""));
+    setLoc(readLocation());
+  }, []);
 
   const onDetailLoaded = useCallback((store) => setDetailName(store.name), []);
 
@@ -86,7 +106,10 @@ function App() {
       )}
       {loc.view === "data-stores" && (
         <DataStores
-          statusFilter={loc.status}
+          search={loc.search}
+          type={loc.type}
+          status={loc.status}
+          onQueryChange={updateQuery}
           onOpenStore={(id) => navigate(`/datastores/${id}`)}
         />
       )}

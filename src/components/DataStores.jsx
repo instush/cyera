@@ -13,23 +13,27 @@ const STATUS_COLORS = {
   error: "#ef4444",
 };
 
-function DataStores({ statusFilter, onOpenStore }) {
-  const [search, setSearch] = useState("");
-  const [type, setType] = useState("");
-  const [status, setStatus] = useState(statusFilter || "");
+function DataStores({ search, type, status, onQueryChange, onOpenStore }) {
   const [stores, setStores] = useState(null);
   const [findingCounts, setFindingCounts] = useState({});
 
-  const debouncedSearch = useDebounce(search, 300);
+  // Local mirror of the search box so typing stays responsive; the URL is
+  // only updated after the debounce settles.
+  const [searchText, setSearchText] = useState(search);
+  const debouncedSearch = useDebounce(searchText, 300);
 
-  // Sync the status filter when the incoming URL param changes (e.g. arriving
-  // from the Overview status cards or via back/forward). Adjusting state during
-  // render is the recommended pattern over an effect.
-  const [prevStatusFilter, setPrevStatusFilter] = useState(statusFilter);
-  if (statusFilter !== prevStatusFilter) {
-    setPrevStatusFilter(statusFilter);
-    setStatus(statusFilter || "");
+  // Re-seed the input when the URL search changes externally (back/forward,
+  // or a link). Adjusting state during render is preferred over an effect.
+  const [prevSearch, setPrevSearch] = useState(search);
+  if (search !== prevSearch) {
+    setPrevSearch(search);
+    setSearchText(search);
   }
+
+  // Write the debounced search term to the URL.
+  useEffect(() => {
+    if (debouncedSearch !== search) onQueryChange({ search: debouncedSearch });
+  }, [debouncedSearch, search, onQueryChange]);
 
   // Findings count per data store (fetched once).
   useEffect(() => {
@@ -47,11 +51,11 @@ function DataStores({ statusFilter, onOpenStore }) {
     };
   }, []);
 
-  // Data stores, re-fetched whenever search/filters change.
+  // Data stores, re-fetched whenever the URL search/filters change.
   useEffect(() => {
     let cancelled = false;
     fetchDataStores({
-      search: debouncedSearch || undefined,
+      search: search || undefined,
       type: type || undefined,
       status: status || undefined,
     }).then((res) => {
@@ -60,7 +64,7 @@ function DataStores({ statusFilter, onOpenStore }) {
     return () => {
       cancelled = true;
     };
-  }, [debouncedSearch, type, status]);
+  }, [search, type, status]);
 
   return (
     <div className="ds">
@@ -69,8 +73,8 @@ function DataStores({ statusFilter, onOpenStore }) {
           type="search"
           className="ds__search"
           placeholder="Search by name, owner, or tag…"
-          value={search}
-          onChange={(e) => setSearch(e.target.value)}
+          value={searchText}
+          onChange={(e) => setSearchText(e.target.value)}
         />
 
         {stores === null ? (
@@ -127,13 +131,13 @@ function DataStores({ statusFilter, onOpenStore }) {
           title="Type"
           options={TYPE_OPTIONS}
           value={type}
-          onChange={setType}
+          onChange={(value) => onQueryChange({ type: value })}
         />
         <FilterGroup
           title="Status"
           options={STATUS_OPTIONS}
           value={status}
-          onChange={setStatus}
+          onChange={(value) => onQueryChange({ status: value })}
         />
       </aside>
     </div>
