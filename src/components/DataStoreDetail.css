@@ -1,0 +1,239 @@
+.dsd__header {
+  background: #fff;
+  border: 1px solid #e5e7eb;
+  border-radius: 12px;
+  padding: 20px 24px;
+  margin-bottom: 24px;
+}
+
+.dsd__top {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  margin-bottom: 16px;
+}
+
+.dsd__name {
+  margin: 0;
+  font-size: 20px;
+  font-weight: 700;
+}
+
+/* Activity log toggle — pushed to the far right of the title bar. */
+.dsd__log-toggle {
+  margin-left: auto;
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  padding: 7px 14px;
+  border: 1px solid #d1d5db;
+  border-radius: 8px;
+  background: #fff;
+  font-size: 13px;
+  font-weight: 500;
+  color: #374151;
+  cursor: pointer;
+}
+
+.dsd__log-toggle:hover {
+  background: #f8fafc;
+}
+
+.dsd__chevron {
+  display: inline-block;
+  transition: transform 0.15s ease;
+  font-size: 11px;
+}
+
+.dsd__chevron--open {
+  transform: rotate(90deg);
+}
+
+/* ---------- Activity log panel ---------- */
+.dsd-log {
+  background: #fff;
+  border: 1px solid #e5e7eb;
+  border-radius: 12px;
+  padding: 8px 0;
+  margin-bottom: 24px;
+}
+
+.dsd-log__state {
+  margin: 0;
+  padding: 12px 20px;
+  font-size: 13px;
+  color: #6b7280;
+}
+
+.dsd-log__list {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+}
+
+.dsd-log__item {
+  padding: 12px 20px;
+  border-bottom: 1px solid #f0f1f3;
+}
+
+.dsd-log__item:last-child {
+  border-bottom: none;
+}
+
+.dsd-log__head {
+  display: flex;
+  align-items: baseline;
+  justify-content: space-between;
+  gap: 12px;
+}
+
+.dsd-log__action {
+  font-size: 13px;
+  font-weight: 600;
+  color: #1a1a2e;
+  text-transform: capitalize;
+}
+
+.dsd-log__time {
+  font-size: 12px;
+  color: #9ca3af;
+  flex-shrink: 0;
+}
+
+.dsd-log__details {
+  margin: 4px 0 2px;
+  font-size: 13px;
+  color: #4b5563;
+}
+
+.dsd-log__user {
+  font-size: 12px;
+  color: #6b7280;
+}
+
+.dsd__status {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  font-size: 13px;
+  font-weight: 500;
+  color: #374151;
+  text-transform: capitalize;
+}
+
+.dsd__status-dot {
+  width: 8px;
+  height: 8px;
+  border-radius: 50%;
+}
+
+.dsd__meta {
+  display: flex;
+  gap: 40px;
+  margin: 0 0 16px;
+}
+
+.dsd__meta dt {
+  font-size: 11px;
+  text-transform: uppercase;
+  letter-spacing: 0.04em;
+  color: #9ca3af;
+  margin-bottom: 2px;
+}
+
+.dsd__meta dd {
+  margin: 0;
+  font-size: 14px;
+  font-weight: 500;
+  color: #1a1a2e;
+  text-transform: capitalize;
+}
+
+.dsd__tags {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px;
+}
+
+.dsd__tag {
+  font-size: 12px;
+  padding: 3px 10px;
+  border-radius: 999px;
+  background: #f1f5f9;
+  color: #475569;
+}
+
+.dsd__findings-heading {
+  margin-top: 0;
+}
+
+/* ---------- Findings table ---------- */
+.dsd-table {
+  width: 100%;
+  border-collapse: collapse;
+  background: #fff;
+  border: 1px solid #e5e7eb;
+  border-radius: 12px;
+  overflow: hidden;
+  font-size: 13px;
+}
+
+.dsd-table th {
+  text-align: left;
+  padding: 12px 14px;
+  background: #f9fafb;
+  color: #6b7280;
+  font-weight: 600;
+  border-bottom: 1px solid #e5e7eb;
+}
+
+.dsd-table td {
+  padding: 12px 14px;
+  border-bottom: 1px solid #f0f1f3;
+  color: #374151;
+}
+
+.dsd-table tbody tr:last-child td {
+  border-bottom: none;
+}
+
+.dsd-table__mono {
+  font-family: ui-monospace, SFMono-Regular, Menlo, monospace;
+  font-size: 12px;
+  color: #1a1a2e;
+}
+
+.dsd-table__num {
+  text-align: right;
+}
+
+.dsd-sensitivity {
+  display: inline-block;
+  padding: 2px 8px;
+  border-radius: 6px;
+  font-size: 12px;
+  font-weight: 600;
+  text-transform: capitalize;
+}
+
+.dsd-sensitivity--select {
+  border: none;
+  cursor: pointer;
+  padding-right: 22px;
+  -webkit-appearance: none;
+  appearance: none;
+  /* small chevron */
+  background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='10' height='6' viewBox='0 0 10 6'%3E%3Cpath fill='%23666' d='M0 0l5 6 5-6z'/%3E%3C/svg%3E");
+  background-repeat: no-repeat;
+  background-position: right 7px center;
+}
+
+.dsd-sensitivity--select:focus {
+  outline: 2px solid rgba(37, 99, 235, 0.4);
+  outline-offset: 1px;
+}
+
+.dsd-sensitivity--select option {
+  background: #fff;
+  color: #1a1a2e;
+}

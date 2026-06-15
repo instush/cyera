@@ -1,0 +1,137 @@
+.ds {
+  display: flex;
+  gap: 24px;
+  align-items: flex-start;
+}
+
+.ds__main {
+  flex: 1;
+  min-width: 0;
+}
+
+.ds__search {
+  width: 100%;
+  box-sizing: border-box;
+  padding: 10px 14px;
+  margin-bottom: 16px;
+  font-size: 14px;
+  border: 1px solid #d1d5db;
+  border-radius: 8px;
+  background: #fff;
+}
+
+.ds__search:focus {
+  outline: none;
+  border-color: #2563eb;
+  box-shadow: 0 0 0 3px rgba(37, 99, 235, 0.15);
+}
+
+/* ---------- Table ---------- */
+.ds-table {
+  width: 100%;
+  border-collapse: collapse;
+  background: #fff;
+  border: 1px solid #e5e7eb;
+  border-radius: 12px;
+  overflow: hidden;
+  font-size: 13px;
+}
+
+.ds-table th {
+  text-align: left;
+  padding: 12px 14px;
+  background: #f9fafb;
+  color: #6b7280;
+  font-weight: 600;
+  border-bottom: 1px solid #e5e7eb;
+}
+
+.ds-table td {
+  padding: 12px 14px;
+  border-bottom: 1px solid #f0f1f3;
+  color: #374151;
+  text-transform: capitalize;
+}
+
+.ds-table tbody tr:last-child td {
+  border-bottom: none;
+}
+
+.ds-table__row {
+  cursor: pointer;
+  transition: background 0.12s;
+}
+
+.ds-table__row:hover {
+  background: #f8fafc;
+}
+
+.ds-table__name {
+  font-weight: 600;
+  color: #1a1a2e;
+}
+
+.ds-table__num {
+  text-align: right;
+  text-transform: none;
+}
+
+.ds-status {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+}
+
+.ds-status__dot {
+  width: 8px;
+  height: 8px;
+  border-radius: 50%;
+  flex-shrink: 0;
+}
+
+/* ---------- Right filter bar ---------- */
+.ds__filters {
+  width: 180px;
+  flex-shrink: 0;
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+  padding: 16px;
+  background: #fff;
+  border: 1px solid #e5e7eb;
+  border-radius: 12px;
+}
+
+.ds-filter__title {
+  margin: 0 0 8px;
+  font-size: 12px;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 0.04em;
+  color: #9ca3af;
+}
+
+.ds-filter__opt {
+  display: block;
+  width: 100%;
+  padding: 7px 10px;
+  margin-bottom: 2px;
+  border: none;
+  border-radius: 6px;
+  background: none;
+  text-align: left;
+  font-size: 13px;
+  color: #374151;
+  cursor: pointer;
+  text-transform: capitalize;
+}
+
+.ds-filter__opt:hover {
+  background: #f1f5f9;
+}
+
+.ds-filter__opt--active {
+  background: #2563eb;
+  color: #fff;
+  font-weight: 600;
+}

@@ -1,0 +1,30 @@
+.stat-card {
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+  padding: 20px 24px;
+  background: #fff;
+  border: 1px solid #e5e7eb;
+  border-radius: 12px;
+  box-shadow: 0 1px 3px rgba(0, 0, 0, 0.06);
+  min-width: 160px;
+}
+
+/* Red thick border via inset ring so the card keeps the same size. */
+.stat-card--alert {
+  border-color: #ef4444;
+  box-shadow: inset 0 0 0 3px #ef4444;
+}
+
+.stat-card__count {
+  font-size: 40px;
+  font-weight: 700;
+  line-height: 1.1;
+  color: #1a1a2e;
+}
+
+.stat-card__title {
+  font-size: 14px;
+  font-weight: 500;
+  color: #6b7280;
+}

@@ -1,0 +1,81 @@
+.exp-card {
+  /* Override StatCard's column layout so the list can flow below. */
+  display: block;
+  padding: 0;
+}
+
+.exp-card__header {
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+  width: 100%;
+  padding: 20px 24px;
+  border: none;
+  background: none;
+  text-align: left;
+  cursor: pointer;
+  border-radius: 12px;
+}
+
+.exp-card--open .exp-card__header {
+  border-bottom: 1px solid #e5e7eb;
+  border-radius: 12px 12px 0 0;
+}
+
+/* Expanded header: single line, regular font size. */
+.exp-card__header-line {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  font-size: 14px;
+  font-weight: 500;
+}
+
+.exp-card__dot {
+  width: 8px;
+  height: 8px;
+  border-radius: 50%;
+  flex-shrink: 0;
+}
+
+.exp-card__title-inline {
+  color: #1a1a2e;
+}
+
+.exp-card__count-inline {
+  margin-left: auto;
+  color: #6b7280;
+  font-weight: 700;
+}
+
+.exp-card__list {
+  list-style: none;
+  margin: 0;
+  padding: 8px;
+  display: flex;
+  flex-direction: column;
+  gap: 2px;
+}
+
+.exp-card__item {
+  display: block;
+  width: 100%;
+  padding: 8px 12px;
+  border: none;
+  border-radius: 8px;
+  background: none;
+  text-align: left;
+  font-size: 13px;
+  color: #2563eb;
+  cursor: pointer;
+}
+
+.exp-card__item:hover {
+  background: #f1f5f9;
+}
+
+.exp-card__empty {
+  padding: 8px 12px;
+  font-size: 13px;
+  color: #9ca3af;
+}

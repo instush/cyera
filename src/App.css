@@ -1,0 +1,28 @@
+/* Starter styles — feel free to modify or replace entirely */
+
+.app__title {
+  margin: 0 0 20px;
+  font-size: 22px;
+  font-weight: 700;
+}
+
+.stat-cards {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 16px;
+}
+
+.overview__section {
+  margin-top: 28px;
+}
+
+.overview__heading {
+  margin: 0 0 12px;
+  font-size: 16px;
+  font-weight: 600;
+}
+
+.overview__state {
+  color: #6b7280;
+  font-size: 14px;
+}
